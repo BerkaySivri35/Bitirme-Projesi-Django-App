@@ -1,0 +1,36 @@
+{%extends 'base.html'%}
+{%block content%}
+    <h1>Hakem Düzenle</h1>
+
+
+
+    <form action="duzenle-kayit/{{ hakem_duzenle.id }}" method="post">
+    {% csrf_token %}
+    Unvan:<br>
+
+    <input  name="last" class="form-control" value="{{ hakem_duzenle.unvan }} ">
+    
+    Adı:<br>
+    <input name="first" class="form-control" value="{{ hakem_duzenle.adi }}">
+    
+    Soyadı:<br>
+    <input name="soyad" class="form-control" value="{{ hakem_duzenle.soyadi }}">
+    Üniversite:<br>
+    <input name="uni" class="form-control" value="{{ hakem_duzenle.universite }}">
+    Fakülte:<br>
+    <input name="fakulte" class="form-control" value="{{ hakem_duzenle.fakulte }}">
+    Bölüm:<br>
+    <input name="bolum" class="form-control" value="{{ hakem_duzenle.bolum }}">
+    
+    E-posta:<br>
+    <input name="posta" type="email" class="form-control" value="{{ hakem_duzenle.e_posta }}">
+
+    Telefon:<br>
+    <input name="tel" type="tel" class="form-control" value="{{ hakem_duzenle.telefon }}">
+        
+
+    <br>
+    <input type="submit" value="Düzenle">
+    </form>
+{%endblock%}
+

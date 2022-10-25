@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{%block content%}
+
+<div class="container">
+    <div class="row">
+        <div class="progress">
+            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 12%">12%</div>
+          </div>
+    </div>
+</div>
+<header class="m-4">
+  <div class="row">
+    <h1 class="display-5 text-center fw-bold">Basvuru Kapak Sayfası</h1> 
+    <!--<small> Başvuran: {{user.username}}</small>-->
+  </div>  
+</header>
+
+{% load crispy_forms_tags %} 
+
+<main class="container  p-3">
+  <article class="container p-3">
+    <div class="row">
+      <div class="col">
+        
+        <hr>
+      {% if user.is_authenticated%}  
+        <Form method="POST">
+          {% csrf_token %}
+          {{ form.as_p}}
+        <button class="btn btn-outline-warning mt-2">Ekle</button>
+        
+        <script>
+          var kullanici = "{{user.id}}";
+          document.getElementById("kullanici_adi").value = kullanici;
+        </script>
+
+      {%else%}
+              Hata oluştu.
+      {%endif%}        
+      </div>
+    </div>
+  </article>
+
+  
+
+
+
+
+</main>
+
+
+
+
+{% endblock %}

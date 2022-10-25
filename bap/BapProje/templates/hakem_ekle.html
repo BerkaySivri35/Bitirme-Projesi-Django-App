@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{%block content%}
+
+<h1>Hakem Ekleme Alanı</h1>
+
+
+
+
+<Form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{form.media}}
+    {{ form.as_p}}
+    
+    <button class="btn btn-outline-success">Ekle</button>
+
+<script>
+        var kullanici = "{{user.id}}";
+        document.getElementById("kullanici_adi").value = kullanici;
+</script>
+
+
+
+
+{% endblock %}

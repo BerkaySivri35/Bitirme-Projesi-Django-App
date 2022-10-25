@@ -1,0 +1,10 @@
+
+{% autoescape off %}  
+Sayın {{ user.username }},
+Hesabınızı etkileştirmek için aşağıdaki linke tıklayınız,
+http://{{ domain }}{% url 'activate' uidb64=uid token=token %}
+
+
+
+
+{% endautoescape %}

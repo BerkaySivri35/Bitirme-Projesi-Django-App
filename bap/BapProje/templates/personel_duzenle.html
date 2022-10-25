@@ -1,0 +1,37 @@
+{%extends 'base.html'%}
+{%block content%}
+
+<h1>Personel Düzenle</h1>
+
+
+
+<form action="duzenle-personel/{{ personel_duzenle.id }}" method="post">
+{% csrf_token %}
+    
+    Adı:<br>
+    <input  name="adi" class="form-control" value="{{ personel_duzenle.adi }}">
+    
+    Soyadı:<br>
+    <input name="soyad" class="form-control" value="{{ personel_duzenle.soyadi }}">
+
+    Üniversite:<br>
+    <input name="uni" class="form-control" value="{{ personel_duzenle.universite }}">
+
+    Fakülte:<br>
+    <input name="fakulte" class="form-control" value="{{ personel_duzenle.fakulte }}">
+
+    Bölüm:<br>
+    <input name="bolum" class="form-control" value="{{ personel_duzenle.bolum }}">
+    
+    E-posta:<br>
+    <input name="eposta" type="email" class="form-control" value="{{ personel_duzenle.e_posta }}">
+
+    cv:<br>
+    <input name="cv" type="file" class="form-control" value="{{ personel_duzenle.cv }}">
+        
+
+    <br>
+    <input type="submit" value="Düzenle">
+    </form>
+
+{%endblock%}    

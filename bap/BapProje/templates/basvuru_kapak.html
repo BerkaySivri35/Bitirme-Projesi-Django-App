@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{%block content%}
+
+
+
+<h3 class="m-3">Proje Basvuru Kapak</h3>
+<hr>
+
+  <table border="1">
+    
+      {% for x in kapak_sayfasi%}
+        {% if user.id == x.basvuran_id %}
+          
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Program</th>
+                <th scope="col">Proje Turu</th>
+                <th scope="col">Proje Baslik</th>
+                <th scope="col">Anahtar Kelimeler</th>
+                <th scope="col">Kurulus Adi</th>
+                <th scope="col">Baslama Tarihi</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">{{x.id}}</th>
+                <td>{{x.program_adi}}</td>
+                <td>{{x.projenin_turu}}</td>
+                <td>{{x.proje_basligi}}</td>
+                <td>{{x.anahtar_kelimeler}}</td>
+                <td>{{x.kurulus_adi}}</td>
+                <td>{{x.proje_baslamaTarihi}}</td>
+              </tr>
+            </tbody>
+          </table> 
+              
+          {% endif %}  
+      {% endfor %}
+  </table>
+   
+
+<a href="{% url 'ikinci-adim' %}"><button type="button" class="btn btn-outline-success">İleri</button></a>
+
+{%endblock%}

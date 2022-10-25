@@ -1,0 +1,123 @@
+{% extends 'base.html' %}
+{%block content%}
+
+<div class="row">
+  <div class="progress">
+      <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 48%">48%</div>
+    </div>
+</div>
+
+<h3>Alınacak Mal / Hizmet / Yolluklar</h3> <hr>
+
+
+{% load crispy_forms_tags %} 
+
+<form action="proje-alimlar/" method="post">
+    {% csrf_token %}
+
+    <!--Başvuran-->
+    <input name="basvuran_id" class="form-control" id="isim" disabled hidden>
+    <br>
+    Malzeme Adı: 
+    <input name="malzemeAdi" class="form-control" required>
+    <br>
+    Malzeme Miktari: 
+    <input name="malzemeMiktari" type="number" min="1" class="form-control" required>
+    <br>
+    Malzeme Fiyati (TL): 
+    <input name="malzemeFiyati" class="form-control" placeholder=". ile ayrım yapınız örn: 999.90" required>
+    <br>
+    Kullanim Gerekceleri: 
+    <input name="kullanimGerekce" class="form-control" required>
+    <br>
+    Yurtici Veya Yurtdisi:
+    <select name="yurticiYurtdisi" class="form-select" required>
+        <option selected>Seçim Yapınız</option>
+        <option value="1">Yurtiçi (Kongre / Sempozyum)</option>
+        <option value="2">Yurtdışı (Kongre / Sempozyum)</option>
+        <option value="3">Diğer</option>
+      </select> 
+    <!--<input name="yurticiYurtdisi">-->
+    <br>
+    Hesaplamalar: 
+    <input name="hesaplamalar" class="form-control" required>
+    <br>
+    Yolluklar Miktari: 
+    <input name="yollukMiktar" class="form-control" type="number" min="1" required>
+    <br>
+    Birim Bedeli (TL): 
+    <input name="birimBedel" class="form-control" placeholder=". ile ayrım yapınız örn: 999.90" required>
+    <br>
+    Yolluklar Kullanim Gerekceleri: 
+    <input name="yollukKullanimGerekce" class="form-control" required>
+    <br>
+    Hizmet Alimlari Mahiyeti: 
+    <input name="hizmetMahiyet" class="form-control" required>
+    <br>
+    Nereden Kimden Alinacagi: 
+    <input name="nerdenKimden" class="form-control" required>
+    <br>
+    Hizmet Alimlari Miktar: 
+    <input name="hizmetMiktar" class="form-control" type="number" min="1" required>
+    <br>
+    Hizmet Alimlari Birim Fiyati: 
+    <input name="hizmetBirimFiyat" class="form-control" placeholder=". ile ayrım yapınız örn: 999.90" required>
+    <br>
+    Hizmet Alimlari Kullanim Gerekceleri:
+    <input name="hizmetGerekce" class="form-control" required>
+    <br>
+    Menkul Mal Malzeme Adi:
+    <input name="menkulAdi" class="form-control" required>
+    <br>
+    Menkul Mal Miktar:
+    <input name="menkulMiktar" class="form-control" type="number" min="1" required>
+    <br>
+    Menkul Mal Birim Fiyat:
+    <input name="menkulFiyat" class="form-control" placeholder=". ile ayrım yapınız örn: 999.90" required>
+    <br>
+    Menkul Mal Kullanim Gerekçeleri:
+    <input name="menkulGerekce" class="form-control" required>
+    <br>
+    
+    <input type="submit" value="Kaydet" class="btn btn-outline-success" required>
+</form>   
+
+<hr>
+
+<script>
+  var kullanici = "{{user.username}}";
+  document.getElementById("isim").value = kullanici;
+</script>
+
+<hr>
+<h3>Kayıtlar</h3>
+<table border="1">
+  {% for x in projeAlim_Sayfasi%}
+      
+      <table class="table">
+              <thead>
+              <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Basvuran</th>
+                  <th scope="col">Aciklama</th>
+                  <th scope="col">Dosya</th>
+                  <th scope="col">Fiyat</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr>
+                  <th scope="row">{{x.id}}</th>
+                  <td>{{user.username}}</td>
+                  <td>{{x.Malzeme_adi}}</td>
+                  <td>{{x.Malzeme_Miktari}}</td>
+                  <td>{{x.Malzeme_Fiyati}}</td>
+
+              </tr>
+              </tbody>
+          
+      
+      </table>      
+  {%endfor%}
+  <a href="{%url 'altinci-adim'%}"><button class="btn btn-outline-success m-4">İleri</button></a>
+
+{% endblock %}

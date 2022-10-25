@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{%block title%} Kayıt Ol {% endblock %}
+{%block content%}
+{% load crispy_forms_tags %}  
+<h2>Kayıt OL Sayfası</h2>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 col-md-6">
+            <div class="form-group">
+                <Form method="POST">
+                    {% csrf_token %}
+                    {{ form|crispy}}
+                    <button class="btn btn-outline-warning mt-3">kayıt ol</button>
+                </Form>
+                <small>Eğer hesabınız varsa <a href="{% url 'login' %}">buradan</a> giriş yapabilirsiniz.</small>
+            </div>
+        </div>
+        
+        <div class="col-md-6 d-none d-md-block">
+            <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80" class="img-thumbnail mt-5" alt="collage" >
+        </div>
+    </div>
+    
+</div>
+    
+        
+
+{% endblock%}
